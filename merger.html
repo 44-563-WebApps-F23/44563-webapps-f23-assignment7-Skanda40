@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Merge</title>
+	<style>
+		.flex-container {
+
+			display: flex;
+			flex-direction: row;
+		}
+		.flex-container>div {
+
+			background-color: #f1f1f1;
+			margin: 10px;
+			padding: 20px;
+			font-size: 30px;
+
+		}
+		@media (max-width: 600px) {
+			.flex-container {
+				flex-direction: column;
+				background-color: rgb(130, 10, 195);
+			}
+
+		}
+	</style>
+</head>
+<body>
+	<h2>Skanda Shreekar Sira Prabhakar builds a merger</h2>
+	<div class="flex-container" id="target">
+
+		<div>Row item 1</div>
+		<div>Row item 2</div>
+		<div>Row item 3</div>
+
+	</div>
+	<p> Press button to create an new element of type div and then add it to the container.</p>
+	<input type="text" id="it">
+	<button onclick="makeNewDiv()">Add end</button>
+	<button id="addFrontButton">Add Front</button>
+    <button id="removeButton">Remove</button>
+</body>
+<script>
+
+	function makeNewDiv() {
+		const shot = document.getElementById("target");
+		const ele = shot.getElementsByTagName("div");
+
+		for (let i = 0; i < ele.length; i++) {
+
+			ele[i].className = "merger";
+
+		}
+
+		let element = document.createElement("div")
+		element.className = "merger"
+		const value = document.getElementById("it").value;
+		element.innerHTML = value
+		let container = document.getElementById('target')
+		container.appendChild(element)
+	}
+
+    document.getElementById("removeButton").onclick = remove;
+
+    function remove() {
+
+        const mergerItems = document.getElementsByClassName("merger");
+        const length = mergerItems.length;
+
+        if (length > 0) {
+
+            const middleitem = Math.floor(length / 2);
+            mergerItems[middleitem].remove();
+
+        }
+    }
+
+    document.getElementById("addFrontButton").onclick = addFront;
+
+    function addFront() {
+
+        const ele = document.createElement("div");
+        ele.className = "merger";
+        const Value = document.getElementById("it").value;
+        ele.innerHTML = Value;
+        const container = document.getElementById("target");
+        container.insertBefore(ele, container.firstChild);
+    }
+</script>
+</html>
